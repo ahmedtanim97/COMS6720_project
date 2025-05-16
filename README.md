@@ -31,10 +31,6 @@
    OPENAI_API_KEY=your_api_key_here
    ```
 
-# Instructions for Vanilla Rag
-
-A sophisticated document processing and retrieval system that leverages FAISS (Facebook AI Similarity Search) and OpenAI embeddings to create an interactive question-answering interface for coral research documents.
-
 ## Project Structure
 ```
 project/
@@ -80,6 +76,10 @@ project/
 │
 └── README.md
 ```
+
+# Instructions for Vanilla Rag
+
+A sophisticated document processing and retrieval system that leverages FAISS (Facebook AI Similarity Search) and OpenAI embeddings to create an interactive question-answering interface for coral research documents.
 
 ### Input Files
 Located in `data/pdfs/`:
