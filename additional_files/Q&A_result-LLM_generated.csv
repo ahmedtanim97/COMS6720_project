@@ -1,0 +1,494 @@
+Question,Ground truth,context,Answer,Similar Chunk 1,Similar Chunk 2,Similar Chunk 3,Similar Chunk 4,Context Precision,Context Recall,Faithfulness,Answer Relevancy,Answer Similarity,Answer Correctness
+How could extending the method to graph classification enhance its applicability in real-world scenarios?,Extending the method to perform graph classification instead of node classification would enhance its applicability in real-world scenarios by allowing it to address a broader range of problems that involve entire graphs rather than just individual nodes. This could be particularly relevant in applications where the relationships and interactions between nodes within a graph are crucial for understanding the overall structure and behavior of the data.,"Moreover, extending the method to perform graph classiﬁcation instead of node classiﬁcation would
+also be relevant from the application perspective. Finally, extending the model to incorporate edge
+features (possibly indicating relationship among nodes) would allow us to tackle a larger variety of
+problems.
+Figure 2: A t-SNE plot of the computed feature representations of a pre-trained GAT model’s
+ﬁrst hidden layer on the Cora dataset. Node colors denote classes. Edge thickness indicates ag-
+gregated normalized attention coefﬁcients between nodes i and j, across all eight attention heads
+(∑K
+k=1 αk
+ij + αk
+ji).
+9","Extending the method to perform graph classification instead of just node classification would enhance its applicability in real-world scenarios by allowing it to tackle a broader range of problems. Graph classification can be relevant in various applications, such as categorizing entire documents, social networks, or biological networks, where the relationships and structures of the entire graph are important for understanding the data. This extension would enable the model to provide insights and predictions at a higher level, making it more useful for tasks that require understanding the overall characteristics of a graph rather than just individual nodes. Additionally, it could facilitate the analysis of complex systems where the interactions between nodes (edges) play a crucial role in determining the graph's class.","Moreover, extending the method to perform graph classiﬁcation instead of node classiﬁcation would
+also be relevant from the application perspective. Finally, extending the model to incorporate edge
+features (possibly indicating relationship among nodes) would allow us to tackle a larger variety of
+problems.
+Figure 2: A t-SNE plot of the computed feature representations of a pre-trained GAT model’s
+ﬁrst hidden layer on the Cora dataset. Node colors denote classes. Edge thickness indicates ag-
+gregated normalized attention coefﬁcients between nodes i and j, across all eight attention heads
+(∑K
+k=1 αk
+ij + αk
+ji).
+9","addressing many of the theoretical issues with previous spectral-based approaches. Our models
+leveraging attention have successfully achieved or matched state-of-the-art performance across four
+well-established node classiﬁcation benchmarks, both transductive and inductive (especially, with
+completely unseen graphs used for testing).
+There are several potential improvements and extensions to graph attention networks that could be
+addressed as future work, such as overcoming the practical problems described in subsection 2.2 to
+be able to handle larger batch sizes. A particularly interesting research direction would be taking
+advantage of the attention mechanism to perform a thorough analysis on the model interpretability.
+Moreover, extending the method to perform graph classiﬁcation instead of node classiﬁcation would
+also be relevant from the application perspective. Finally, extending the model to incorporate edge","a number of experiments on citation networks and on a knowledge graph dataset
+we demonstrate that our approach outperforms related methods by a signiﬁcant
+margin.
+1 I NTRODUCTION
+We consider the problem of classifying nodes (such as documents) in a graph (such as a citation
+network), where labels are only available for a small subset of nodes. This problem can be framed
+as graph-based semi-supervised learning, where label information is smoothed over the graph via
+some form of explicit graph-based regularization (Zhu et al., 2003; Zhou et al., 2004; Belkin et al.,
+2006; Weston et al., 2012), e.g. by using a graph Laplacian regularization term in the loss function:
+L= L0 + λLreg , with Lreg =
+∑
+i,j
+Aij∥f(Xi) −f(Xj)∥2 = f(X)⊤∆f(X) . (1)
+Here, L0 denotes the supervised loss w.r.t. the labeled part of the graph,f(·) can be a neural network-
+like differentiable function, λ is a weighing factor and X is a matrix of node feature vectors Xi.","In the experiments demonstrated here, our method for semi-supervised node classiﬁcation outper-
+forms recent related methods by a signiﬁcant margin. Methods based on graph-Laplacian regular-
+ization (Zhu et al., 2003; Belkin et al., 2006; Weston et al., 2012) are most likely limited due to their
+assumption that edges encode mere similarity of nodes. Skip-gram based methods on the other hand
+are limited by the fact that they are based on a multi-step pipeline which is difﬁcult to optimize.
+Our proposed model can overcome both limitations, while still comparing favorably in terms of ef-
+ﬁciency (measured in wall-clock time) to related methods. Propagation of feature information from
+neighboring nodes in every layer improves classiﬁcation performance in comparison to methods like
+ICA (Lu & Getoor, 2003), where only label information is aggregated.
+We have further demonstrated that the proposed renormalized propagation model (Eq. 8) offers both",0.999999999975,0.5,0.6666666666666666,0.9765429083345657,0.9807049398905795,0.5264262349726448
+How does the depth of a network influence the receptive field in graph-based models?,"The depth of the network upper-bounds the size of the ""receptive field"" of the model.","to CPUs in these sparse scenarios. It should also be noted that the size of the “receptive ﬁeld” of
+our model is upper-bounded by the depth of the network (similarly as for GCN and similar models).
+Techniques such as skip connections (He et al., 2016) could be readily applied for appropriately
+extending the depth, however. Lastly, parallelization across all the graph edges, especially in a
+distributed manner, may involve a lot of redundant computation, as the neighborhoods will often
+highly overlap in graphs of interest.
+3 E VALUATION
+We have performed comparative evaluation of GAT models against a wide variety of strong base-
+lines and previous approaches, on four established graph-based benchmark tasks (transductive as
+5","The depth of a network influences the receptive field in graph-based models by upper-bounding it. This means that the maximum size of the receptive field is determined by how deep the network is. As the depth increases, the network can potentially capture more complex relationships and features within the graph data. However, techniques such as skip connections can be applied to extend the depth appropriately, which may help in enhancing the receptive field further.","to CPUs in these sparse scenarios. It should also be noted that the size of the “receptive ﬁeld” of
+our model is upper-bounded by the depth of the network (similarly as for GCN and similar models).
+Techniques such as skip connections (He et al., 2016) could be readily applied for appropriately
+extending the depth, however. Lastly, parallelization across all the graph edges, especially in a
+distributed manner, may involve a lot of redundant computation, as the neighborhoods will often
+highly overlap in graphs of interest.
+3 E VALUATION
+We have performed comparative evaluation of GAT models against a wide variety of strong base-
+lines and previous approaches, on four established graph-based benchmark tasks (transductive as
+5","50, 40]. Deep networks naturally integrate low/mid/high-
+level features [50] and classiﬁers in an end-to-end multi-
+layer fashion, and the “levels” of features can be enriched
+by the number of stacked layers (depth). Recent evidence
+[41, 44] reveals that network depth is of crucial importance,
+and the leading results [41, 44, 13, 16] on the challenging
+ImageNet dataset [36] all exploit “very deep” [41] models,
+with a depth of sixteen [41] to thirty [16]. Many other non-
+trivial visual recognition tasks [8, 12, 7, 32, 27] have also
+1http://image-net.org/challenges/LSVRC/2015/ and
+http://mscoco.org/dataset/#detections-challenge2015.
+0 1 2 3 4 5 60 
+10
+20
+iter. (1e4)
+training error (%)
+ 
+ 
+0 1 2 3 4 5 60
+10
+20
+iter. (1e4)
+test error (%)
+ 
+ 
+56-layer
+20-layer
+56-layer
+20-layer
+Figure 1. Training error (left) and test error (right) on CIFAR-10
+with 20-layer and 56-layer “plain” networks. The deeper network
+has higher training error, and thus test error. Similar phenomena","keeping other settings the same for fairness of comparisons.
+Table 6 provides comparison results between g-U-Nets with
+and without graph connectivity augmentation. The results
+show that the absence of graph connectivity augmentation
+will cause consistent performance degradation on all of
+three datasets. This demonstrates that graph connectivity
+augmentation via 2nd graph power can help with the graph
+connectivity and information transfer among nodes in sam-
+pled graphs.
+4.6. Network Depth Study of Graph U-Nets
+Since the network depth in terms of the number of blocks in
+encoder and decoder parts is an important hyper-parameter
+in the g-U-Nets, we conduct experiments to investigate the
+relationship between network depth and performance in
+terms of node classiﬁcation accuracy. We use different
+network depths on node classiﬁcation tasks and report the
+classiﬁcation accuracies. The results are summarized in Ta-
+ble 7. We can observe from the results that the performance","Figure 1. Training error (left) and test error (right) on CIFAR-10
+with 20-layer and 56-layer “plain” networks. The deeper network
+has higher training error, and thus test error. Similar phenomena
+on ImageNet is presented in Fig. 4.
+greatly beneﬁted from very deep models.
+Driven by the signiﬁcance of depth, a question arises: Is
+learning better networks as easy as stacking more layers?
+An obstacle to answering this question was the notorious
+problem of vanishing/exploding gradients [1, 9], which
+hamper convergence from the beginning. This problem,
+however, has been largely addressed by normalized initial-
+ization [23, 9, 37, 13] and intermediate normalization layers
+[16], which enable networks with tens of layers to start con-
+verging for stochastic gradient descent (SGD) with back-
+propagation [22].
+When deeper networks are able to start converging, a
+degradation problem has been exposed: with the network
+depth increasing, accuracy gets saturated (which might be",0.9999999999,1.0,0.6,0.9973937242648057,0.9309556951725252,0.6613103523645599
+In what ways can parallelization across graph edges lead to redundant computations in distributed systems?,Parallelization across all the graph edges may involve a lot of redundant computation because the neighborhoods will often highly overlap in graphs of interest.,"to CPUs in these sparse scenarios. It should also be noted that the size of the “receptive ﬁeld” of
+our model is upper-bounded by the depth of the network (similarly as for GCN and similar models).
+Techniques such as skip connections (He et al., 2016) could be readily applied for appropriately
+extending the depth, however. Lastly, parallelization across all the graph edges, especially in a
+distributed manner, may involve a lot of redundant computation, as the neighborhoods will often
+highly overlap in graphs of interest.
+3 E VALUATION
+We have performed comparative evaluation of GAT models against a wide variety of strong base-
+lines and previous approaches, on four established graph-based benchmark tasks (transductive as
+5","Parallelization across all the graph edges, especially in a distributed manner, may involve a lot of redundant computation because the neighborhoods in graphs of interest often highly overlap. This means that when processing different edges, the same nodes or neighborhoods may be computed multiple times, leading to inefficiencies and unnecessary duplication of work.","to CPUs in these sparse scenarios. It should also be noted that the size of the “receptive ﬁeld” of
+our model is upper-bounded by the depth of the network (similarly as for GCN and similar models).
+Techniques such as skip connections (He et al., 2016) could be readily applied for appropriately
+extending the depth, however. Lastly, parallelization across all the graph edges, especially in a
+distributed manner, may involve a lot of redundant computation, as the neighborhoods will often
+highly overlap in graphs of interest.
+3 E VALUATION
+We have performed comparative evaluation of GAT models against a wide variety of strong base-
+lines and previous approaches, on four established graph-based benchmark tasks (transductive as
+5","memory, training on CPU can still be a viable option. Mini-batch stochastic gradient descent can
+alleviate this issue. The procedure of generating mini-batches, however, should take into account the
+number of layers in the GCN model, as theKth-order neighborhood for a GCN withKlayers has to
+be stored in memory for an exact procedure. For very large and densely connected graph datasets,
+further approximations might be necessary.
+Directed edges and edge featuresOur framework currently does not naturally support edge fea-
+tures and is limited to undirected graphs (weighted or unweighted). Results on NELL however
+show that it is possible to handle both directed edges and edge features by representing the original
+directed graph as an undirected bipartite graph with additional nodes that represent edges in the
+original graph (see Section 5.1 for details).
+Limiting assumptions Through the approximations introduced in Section 2, we implicitly assume","original graph (see Section 5.1 for details).
+Limiting assumptions Through the approximations introduced in Section 2, we implicitly assume
+locality (dependence on the Kth-order neighborhood for a GCN with K layers) and equal impor-
+tance of self-connections vs. edges to neighboring nodes. For some datasets, however, it might be
+beneﬁcial to introduce a trade-off parameter λin the deﬁnition of ˜A:
+˜A= A+ λIN . (11)
+4Hardware used: 16-core Intel R⃝ Xeon R⃝ CPU E5-2640 v3 @ 2.60GHz, GeForce R⃝ GTX TITAN X
+8","In the experiments demonstrated here, our method for semi-supervised node classiﬁcation outper-
+forms recent related methods by a signiﬁcant margin. Methods based on graph-Laplacian regular-
+ization (Zhu et al., 2003; Belkin et al., 2006; Weston et al., 2012) are most likely limited due to their
+assumption that edges encode mere similarity of nodes. Skip-gram based methods on the other hand
+are limited by the fact that they are based on a multi-step pipeline which is difﬁcult to optimize.
+Our proposed model can overcome both limitations, while still comparing favorably in terms of ef-
+ﬁciency (measured in wall-clock time) to related methods. Propagation of feature information from
+neighboring nodes in every layer improves classiﬁcation performance in comparison to methods like
+ICA (Lu & Getoor, 2003), where only label information is aggregated.
+We have further demonstrated that the proposed renormalized propagation model (Eq. 8) offers both",0.9999999999,1.0,0.6666666666666666,0.897233823081661,0.9715024175267495,0.6178756043816873
+"What role does the activation function, specifically ReLU, play in the performance of deep learning models with varying layer counts?","The activation function ReLU has a less severe impact on the performance of ResNet models with fewer layers (e.g., 164 layers), where the training curve may initially suffer but improves quickly. In deeper networks, such as those with 1000 layers, truncation occurs more frequently, which can affect performance. The weights adjust over time, leading to more frequent occurrences where the output is above zero, reducing the impact of truncation.","signal can be propagated directly between any two units. Our 1001-layer network
+reduces the training loss very quickly (Fig. 1). It also achieves the lowest loss
+among all models we investigated, suggesting the success of optimization.
+We also ﬁnd that the impact of f = ReLU is not severe when the ResNet
+has fewer layers ( e.g., 164 in Fig. 6(right)). The training curve seems to suﬀer
+a little bit at the beginning of training, but goes into a healthy status soon. By
+monitoring the responses we observe that this is because after some training,
+the weights are adjusted into a status such that yl in Eqn.(1) is more frequently
+above zero and f does not truncate it (xl is always non-negative due to the pre-
+vious ReLU, so yl is below zero only when the magnitude of Fis very negative).
+The truncation, however, is more frequent when there are 1000 layers.","The activation function, specifically ReLU (Rectified Linear Unit), plays a significant role in the performance of deep learning models, particularly in very deep networks. In the context of ResNet architectures with varying layer counts, the following points can be noted:
+
+1. **Signal Propagation**: ReLU helps in propagating the signal through the network. In deeper networks, such as those with 1000 layers, the use of ReLU can lead to truncation of negative values, which may hinder learning. However, when the network is trained sufficiently, the weights can adjust such that the outputs of the layers are more frequently above zero, allowing ReLU to function effectively.
+
+2. **Impact on Training**: The impact of ReLU is less severe in networks with fewer layers (e.g., ResNet-164) compared to those with many layers (e.g., ResNet-1001). In shallower networks, the training curve may initially suffer but tends to stabilize as training progresses. In deeper networks, the truncation effect of ReLU becomes more pronounced, which can affect the learning dynamics.
+
+3. **Pre-activation vs. Post-activation**: The position of the ReLU activation (whether it is applied before or after the addition of shortcut connections) also influences performance. Full pre-activation (where both Batch Normalization and ReLU are applied before weight layers) has been shown to improve results significantly compared to other configurations.
+
+4. **Optimization**: The combination of ReLU with Batch Normalization (BN) in a pre-activation setup allows for better optimization, as it enables more direct signal propagation between units, leading to lower training loss and improved performance.
+
+In summary, ReLU's role in deep learning models is crucial for effective signal propagation, influencing training dynamics, and optimizing performance, especially in deeper architectures.","ResNet-110 6.61 6.37
+ResNet-164 5.93 5.46
+ResNet-1001 7.61 4.92
+CIFAR-100 ResNet-164 25.16 24.33
+ResNet-1001 27.82 22.71
+The distinction between post-activation/pre-activation is caused by the pres-
+ence of the element-wise addition. For a plain network that has N layers, there
+are N −1 activations (BN/ReLU), and it does not matter whether we think of
+them as post- or pre-activations. But for branched layers merged by addition,
+the position of activation matters.
+We experiment with two such designs: (i) ReLU-only pre-activation (Fig. 4(d)),
+and (ii) full pre-activation (Fig. 4(e)) where BN and ReLU are both adopted be-
+fore weight layers. Table 2 shows that the ReLU-only pre-activation performs
+very similar to the baseline on ResNet-110/164. This ReLU layer is not used in
+conjunction with a BN layer, and may not enjoy the beneﬁts of BN [8].
+Somehow surprisingly, when BN and ReLU are both used as pre-activation,","signal can be propagated directly between any two units. Our 1001-layer network
+reduces the training loss very quickly (Fig. 1). It also achieves the lowest loss
+among all models we investigated, suggesting the success of optimization.
+We also ﬁnd that the impact of f = ReLU is not severe when the ResNet
+has fewer layers ( e.g., 164 in Fig. 6(right)). The training curve seems to suﬀer
+a little bit at the beginning of training, but goes into a healthy status soon. By
+monitoring the responses we observe that this is because after some training,
+the weights are adjusted into a status such that yl in Eqn.(1) is more frequently
+above zero and f does not truncate it (xl is always non-negative due to the pre-
+vious ReLU, so yl is below zero only when the magnitude of Fis very negative).
+The truncation, however, is more frequent when there are 1000 layers.","8
+Table 2.Classiﬁcation error (%) on the CIFAR-10 test set using diﬀerent activation
+functions.
+case Fig. ResNet-110 ResNet-164
+original Residual Unit [1] Fig. 4(a) 6.61 5.93
+BN after addition Fig. 4(b) 8.17 6.50
+ReLU before addition Fig. 4(c) 7.84 6.14
+ReLU-only pre-activation Fig. 4(d) 6.71 5.91
+full pre-activation Fig. 4(e) 6.37 5.46
+BN
+ReLU
+weight
+BN
+weight
+addition
+ReLU
+xl
+xl+1
+ReLU
+weight
+BN
+ReLU
+weight
+BN
+addition
+xl
+xl+1
+BN
+ReLU
+weight
+BN
+weight
+addition
+ReLU
+xl
+xl+1
+BN
+ReLU
+weight
+BN
+ReLU
+weight
+addition
+xl
+xl+1
+weight
+BN
+ReLU
+weight
+BN
+ReLU
+addition
+xl
+xl+1
+(a) original (b) BN after 
+addition
+(c) ReLU before 
+addition
+(d) ReLU-only
+pre-activation (e) full pre-activation
+Figure 4.Various usages of activation in Table 2. All these units consist of the same
+components — only the orders are diﬀerent.
+3.2 Discussions
+As indicated by the grey arrows in Fig. 2, the shortcut connections are the
+most direct paths for the information to propagate. Multiplicative manipulations","conjunction with a BN layer, and may not enjoy the beneﬁts of BN [8].
+Somehow surprisingly, when BN and ReLU are both used as pre-activation,
+the results are improved by healthy margins (Table 2 and Table 3). In Table 3 we
+report results using various architectures: (i) ResNet-110, (ii) ResNet-164, (iii)
+a 110-layer ResNet architecture in which each shortcut skips only 1 layer ( i.e.,",0.999999999975,1.0,0.9090909090909091,0.9456838416944559,0.9258537184136159,0.8121085908937264
+In what ways might the enhancements in the 'baseline+++' system impact the accuracy of object detection compared to the standard baseline?,"The enhancements in the 'baseline+++' system, which include box refinement, context, and multi-scale testing, might impact the accuracy of object detection by improving the mean Average Precision (mAP) by over 2 points compared to the standard baseline. These enhancements allow for better localization of objects (box refinement), consideration of surrounding context for improved detection, and the use of multiple scales to capture objects of varying sizes, all contributing to a more accurate detection performance.","Table 11. Detection results on the PASCAL VOC 2012 test set ( http://host.robots.ox.ac.uk:8080/leaderboard/
+displaylb.php?challengeid=11&compid=4). The baseline is the Faster R-CNN system. The system “baseline+++” include
+box reﬁnement, context, and multi-scale testing in Table 9.
+We select two adjacent scales from the pyramid following
+[33]. RoI pooling and subsequent layers are performed on
+the feature maps of these two scales [33], which are merged
+by maxout as in [33]. Multi-scale testing improves the mAP
+by over 2 points (Table 9).
+Using validation data. Next we use the 80k+40k trainval set
+for training and the 20k test-dev set for evaluation. The test-
+dev set has no publicly available ground truth and the result
+is reported by the evaluation server. Under this setting, the
+results are an mAP@.5 of 55.7% and an mAP@[.5, .95] of
+34.9% (Table 9). This is our single-model result.
+Ensemble. In Faster R-CNN, the system is designed to learn","The enhancements in the 'baseline+++' system, which include box refinement, context, and multi-scale testing, can impact the accuracy of object detection in several ways:
+
+1. **Box Refinement**: This process improves the precision of the predicted bounding boxes by regressing the initial proposal boxes. By refining the boxes, the system can achieve better localization of objects, which can lead to an increase in mean Average Precision (mAP).
+
+2. **Contextual Information**: Incorporating global context helps the model to better understand the relationships between objects and their surroundings. This can improve the classification accuracy of objects, especially in complex scenes where context plays a crucial role in identifying objects.
+
+3. **Multi-Scale Testing**: By evaluating the model at different scales, the system can better detect objects of varying sizes. This approach can enhance the model's ability to recognize smaller or larger objects that may not be as effectively detected at a single scale.
+
+Overall, these enhancements contribute to a more robust detection system, leading to improved accuracy in both recognition and localization of objects compared to the standard baseline. The reported improvements indicate that these enhancements can lead to significant gains in mAP, as seen in the results.","Table 11. Detection results on the PASCAL VOC 2012 test set ( http://host.robots.ox.ac.uk:8080/leaderboard/
+displaylb.php?challengeid=11&compid=4). The baseline is the Faster R-CNN system. The system “baseline+++” include
+box reﬁnement, context, and multi-scale testing in Table 9.
+We select two adjacent scales from the pyramid following
+[33]. RoI pooling and subsequent layers are performed on
+the feature maps of these two scales [33], which are merged
+by maxout as in [33]. Multi-scale testing improves the mAP
+by over 2 points (Table 9).
+Using validation data. Next we use the 80k+40k trainval set
+for training and the 20k test-dev set for evaluation. The test-
+dev set has no publicly available ground truth and the result
+is reported by the evaluation server. Under this setting, the
+results are an mAP@.5 of 55.7% and an mAP@[.5, .95] of
+34.9% (Table 9). This is our single-model result.
+Ensemble. In Faster R-CNN, the system is designed to learn","baseline+++ResNet-101 COCO+07+12 85.6 90.0 89.6 87.8 80.8 76.1 89.9 89.9 89.6 75.5 90.0 80.7 89.6 90.3 89.1 88.7 65.4 88.1 85.6 89.0 86.8
+Table 10. Detection results on the PASCAL VOC 2007 test set. The baseline is the Faster R-CNN system. The system “baseline+++”
+include box reﬁnement, context, and multi-scale testing in Table 9.
+system net data mAP areo bike bird boat bottle bus car cat chair cow table dog horse mbike person plant sheep sofa train tv
+baseline VGG-16 07++12 70.4 84.9 79.8 74.3 53.9 49.8 77.5 75.9 88.5 45.6 77.1 55.3 86.9 81.7 80.9 79.6 40.1 72.6 60.9 81.2 61.5
+baseline ResNet-101 07++12 73.8 86.5 81.6 77.2 58.0 51.0 78.6 76.6 93.2 48.6 80.4 59.0 92.1 85.3 84.8 80.7 48.1 77.3 66.5 84.7 65.6
+baseline+++ResNet-101 COCO+07++12 83.8 92.1 88.4 84.8 75.9 71.4 86.3 87.8 94.2 66.8 89.4 69.2 93.9 91.9 90.9 89.6 67.9 88.2 76.8 90.3 80.0
+Table 11. Detection results on the PASCAL VOC 2012 test set ( http://host.robots.ox.ac.uk:8080/leaderboard/","nearly as big as mAP@.5’s (6.9%). This suggests that a
+deeper network can improve both recognition and localiza-
+tion.
+B. Object Detection Improvements
+For completeness, we report the improvements made for
+the competitions. These improvements are based on deep
+features and thus should beneﬁt from residual learning.
+MS COCO
+Box reﬁnement. Our box reﬁnement partially follows the it-
+erative localization in [6]. In Faster R-CNN, the ﬁnal output
+is a regressed box that is different from its proposal box. So
+for inference, we pool a new feature from the regressed box
+and obtain a new classiﬁcation score and a new regressed
+box. We combine these 300 new predictions with the orig-
+inal 300 predictions. Non-maximum suppression (NMS) is
+applied on the union set of predicted boxes using an IoU
+threshold of 0.3 [8], followed by box voting [6]. Box re-
+ﬁnement improves mAP by about 2 points (Table 9).
+Global context. We combine global context in the Fast","A. Object Detection Baselines
+In this section we introduce our detection method based
+on the baseline Faster R-CNN [32] system. The models are
+initialized by the ImageNet classiﬁcation models, and then
+ﬁne-tuned on the object detection data. We have experi-
+mented with ResNet-50/101 at the time of the ILSVRC &
+COCO 2015 detection competitions.
+Unlike VGG-16 used in [32], our ResNet has no hidden
+fc layers. We adopt the idea of “Networks on Conv fea-
+ture maps” (NoC) [33] to address this issue. We compute
+the full-image shared conv feature maps using those lay-
+ers whose strides on the image are no greater than 16 pixels
+(i.e., conv1, conv2 x, conv3 x, and conv4 x, totally 91 conv
+layers in ResNet-101; Table 1). We consider these layers as
+analogous to the 13 conv layers in VGG-16, and by doing
+so, both ResNet and VGG-16 have conv feature maps of the
+same total stride (16 pixels). These layers are shared by a
+region proposal network (RPN, generating 300 proposals)",0.9999999999666667,1.0,0.7692307692307693,0.9838247847551426,0.973901153661008,0.48031739367840987
+What are the advantages of using a technique that accesses the entirety of the neighborhood in graph evaluation?,"The advantages of using a technique that accesses the entirety of the neighborhood in graph evaluation include not suffering from the limitations of fixed-size neighborhood sampling, which can restrict the information available during inference. This approach allows for a more comprehensive understanding of the node's context, potentially leading to better performance. Additionally, it does not assume any specific ordering within the neighborhood, which can simplify the processing and improve the model's flexibility compared to methods that rely on sequential node ordering.","where the model is evaluated on graphs that are completely unseen during training.
+•The recently published inductive method of Hamilton et al. (2017) samples a ﬁxed-size
+neighborhood of each node, in order to keep its computational footprint consistent; this
+does not allow it access to the entirety of the neighborhood while performing inference.
+Moreover, this technique achieved some of its strongest results when an LSTM (Hochreiter
+& Schmidhuber, 1997)-based neighborhood aggregator is used. This assumes the existence
+of a consistent sequential node ordering across neighborhoods, and the authors have rec-
+tiﬁed it by consistently feeding randomly-ordered sequences to the LSTM. Our technique
+does not suffer from either of these issues—it works with the entirety of the neighborhood
+(at the expense of a variable computational footprint, which is still on-par with methods
+like the GCN), and does not assume any ordering within it.","The advantages of using a technique that accesses the entirety of the neighborhood in graph evaluation include:
+
+1. **Increased Model Capacity**: By observing the entire neighborhood, the model can leverage more information, which can lead to improved predictive power and performance.
+
+2. **Variable Computational Footprint**: While it may have a variable computational footprint, it can still be on-par with other methods like GCNs, allowing for flexibility in processing.
+
+3. **No Assumption of Node Ordering**: Unlike some methods that require a consistent sequential node ordering, this technique does not assume any ordering within the neighborhood, making it more versatile.
+
+4. **Improved Interpretability**: Analyzing the learned attentional weights can enhance interpretability, similar to benefits seen in other domains like machine translation.
+
+5. **Applicability to Inductive Learning**: The technique is directly applicable to inductive learning tasks, including scenarios where the model is evaluated on completely unseen graphs during training.
+
+6. **Weight Assignment**: It allows for assigning different weights to nodes within the same neighborhood, which can be beneficial for capturing the varying importance of different neighbors. 
+
+Overall, these advantages contribute to better performance and flexibility in graph-based learning tasks.","where the model is evaluated on graphs that are completely unseen during training.
+•The recently published inductive method of Hamilton et al. (2017) samples a ﬁxed-size
+neighborhood of each node, in order to keep its computational footprint consistent; this
+does not allow it access to the entirety of the neighborhood while performing inference.
+Moreover, this technique achieved some of its strongest results when an LSTM (Hochreiter
+& Schmidhuber, 1997)-based neighborhood aggregator is used. This assumes the existence
+of a consistent sequential node ordering across neighborhoods, and the authors have rec-
+tiﬁed it by consistently feeding randomly-ordered sequences to the LSTM. Our technique
+does not suffer from either of these issues—it works with the entirety of the neighborhood
+(at the expense of a variable computational footprint, which is still on-par with methods
+like the GCN), and does not assume any ordering within it.","all four datasets—in concordance with our expectations, as per the discussion in Section 2.2. More
+speciﬁcally, we are able to improve upon GCNs by a margin of 1.5% and 1.6% on Cora and Cite-
+seer, respectively, suggesting that assigning different weights to nodes of a same neighborhood may
+be beneﬁcial. It is worth noting the improvements achieved on the PPI dataset: Our GAT model
+improves by 20.5% w.r.t. the best GraphSAGE result we were able to obtain, demonstrating that our
+model has the potential to be applied in inductive settings, and that larger predictive power can be
+leveraged by observing the entire neighborhood. Furthermore, it improves by 3.9% w.r.t. Const-GAT
+(the identical architecture with constant attention mechanism), once again directly demonstrating the
+signiﬁcance of being able to assign different weights to different neighbors.
+8","nodes of a same neighborhood, enabling a leap in model capacity. Furthermore, analyzing
+the learned attentional weights may lead to beneﬁts in interpretability, as was the case in
+the machine translation domain (e.g. the qualitative analysis of Bahdanau et al. (2015)).
+•The attention mechanism is applied in a shared manner to all edges in the graph, and there-
+fore it does not depend on upfront access to the global graph structure or (features of) all of
+its nodes (a limitation of many prior techniques). This has several desirable implications:
+– The graph is not required to be undirected (we may simply leave out computingαij if
+edge j →iis not present).
+– It makes our technique directly applicable to inductive learning—including tasks
+where the model is evaluated on graphs that are completely unseen during training.
+•The recently published inductive method of Hamilton et al. (2017) samples a ﬁxed-size","the other techniques. Speciﬁcally, as our setup is supervised, we compare against the supervised
+GraphSAGE approaches. To evaluate the beneﬁts of aggregating across the entire neighborhood,
+we further provide (as GraphSAGE∗) the best result we were able to achieve with GraphSAGE by
+just modifying its architecture (this was with a three-layer GraphSAGE-LSTM with [512, 512, 726]
+features computed in each layer and 128 features used for aggregating neighborhoods). Finally,
+we report the 10-run result of our constant attention GAT model (as Const-GAT), to fairly evaluate
+the beneﬁts of the attention mechanism against a GCN-like aggregation scheme (with the same
+architecture).
+Our results successfully demonstrate state-of-the-art performance being achieved or matched across
+all four datasets—in concordance with our expectations, as per the discussion in Section 2.2. More
+speciﬁcally, we are able to improve upon GCNs by a margin of 1.5% and 1.6% on Cora and Cite-",0.9999999999666667,1.0,1.0,1.0000000000000002,0.945249733873911,0.42381243346847775
+How does the performance of ResNet-200 compare to other models like Inception v3?,"The ResNet-200 has a result better than Inception v3 when using the scale and aspect ratio augmentation of [20,19].","lower than the baseline ResNet-200 and also lower than the two versions of
+ResNet-152. When using the scale and aspect ratio augmentation of [20,19], our
+ResNet-200 has a result better than Inception v3 [19] (Table 5). Concurrent
+with our work, an Inception-ResNet-v2 model [21] achieves a single-crop result
+of 19.9%/4.9%. We expect our observations and the proposed Residual Unit will
+help this type and generally other types of ResNets.
+Computational Cost. Our models’ computational complexity is linear on
+3 The ResNet-200 has 16 more 3-layer bottleneck Residual Units than ResNet-152,
+which are added on the feature map of 28 ×28.","The ResNet-200 has shown better performance than Inception v3 in certain scenarios. Specifically, when using scale and aspect ratio augmentation, the ResNet-200 achieved results that were better than those of Inception v3. However, the performance of ResNet-200 is also noted to be lower than the two versions of ResNet-152. Overall, the ResNet-200 demonstrates competitive accuracy, particularly in comparison to Inception v3.","lower than the baseline ResNet-200 and also lower than the two versions of
+ResNet-152. When using the scale and aspect ratio augmentation of [20,19], our
+ResNet-200 has a result better than Inception v3 [19] (Table 5). Concurrent
+with our work, an Inception-ResNet-v2 model [21] achieves a single-crop result
+of 19.9%/4.9%. We expect our observations and the proposed Residual Unit will
+help this type and generally other types of ResNets.
+Computational Cost. Our models’ computational complexity is linear on
+3 The ResNet-200 has 16 more 3-layer bottleneck Residual Units than ResNet-152,
+which are added on the feature map of 28 ×28.","Inception v3 [19] scale+asp ratio 299×299 299×299 21.2 5.6
+(similar to Fig. 3), and we decided to halt training due to limited resources.
+But we did ﬁnish a “BN after addition” version (Fig. 4(b)) of ResNet-101 on
+ImageNet and observed higher training loss and validation error. This model’s
+single-crop (224×224) validation error is 24.6%/7.5%, vs. the original ResNet-
+101’s 23.6%/7.1%. This is in line with the results on CIFAR in Fig. 6 (left).
+Table 5 shows the results of ResNet-152 [1] and ResNet-2003, all trained from
+scratch. We notice that the original ResNet paper [1] trained the models using
+scale jittering with shorter side s∈[256,480], and so the test of a 224 ×224 crop
+on s= 256 (as did in [1]) is negatively biased. Instead, we test a single 320 ×320
+crop from s = 320, for all original and our ResNets. Even though the ResNets
+are trained on smaller crops, they can be easily tested on larger crops because","we compare with the previous best single-model results.
+Our baseline 34-layer ResNets have achieved very compet-
+itive accuracy. Our 152-layer ResNet has a single-model
+top-5 validation error of 4.49%. This single-model result
+outperforms all previous ensemble results (Table 5). We
+combine six models of different depth to form an ensemble
+(only with two 152-layer ones at the time of submitting).
+This leads to 3.57% top-5 error on the test set (Table 5).
+This entry won the 1st place in ILSVRC 2015.
+4.2. CIFAR-10 and Analysis
+We conducted more studies on the CIFAR-10 dataset
+[20], which consists of 50k training images and 10k test-
+ing images in 10 classes. We present experiments trained
+on the training set and evaluated on the test set. Our focus
+is on the behaviors of extremely deep networks, but not on
+pushing the state-of-the-art results, so we intentionally use
+simple architectures as follows.
+The plain/residual architectures follow the form in Fig. 3","to train and generalizes better than the original ResNet in [1]. We further report
+improved results on ImageNet using a 200-layer ResNet, for which the counter-
+part of [1] starts to overﬁt. These results suggest that there is much room to
+exploit the dimension of network depth, a key to the success of modern deep
+learning.
+2 Analysis of Deep Residual Networks
+The ResNets developed in [1] are modularized architectures that stack building
+blocks of the same connecting shape. In this paper we call these blocks “Residual",0.99999999995,1.0,0.75,0.9705107349868198,0.9261348586688949,0.8743908575243665
