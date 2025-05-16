@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # COMS6720_project
 =======
 ### Prerequisites
@@ -333,5 +332,3 @@ project/
 
 1. **API key errors:**
    Check that your .env file is properly set up with your OpenAI API key.
-
->>>>>>> cbc7967 (local to remote)
