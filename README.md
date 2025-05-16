@@ -196,7 +196,7 @@ This README provides documentation for the hybrid retrieval system scripts and t
 
 ## Overview of Chain of Thought
 
-The hybrid scripts in this project implement a sophisticated information retrieval system combining semantic search with graph-based knowledge representation. These scripts form the backbone of the Coral AI knowledge system.
+The hybrid scripts in this project implement a sophisticated information retrieval system combining semantic search with graph-based knowledge representation.
 
 ### Key Scripts
 
@@ -258,6 +258,8 @@ python scripts/Hybrid_scripts/item_04_CoT_search.py
 This will:
 - Return 3 variable final_answer, reasoning_steps, citations by calling "answer_to_QA(query)" function
 
+**4. Run CoT search (For Basic Search):**
+
 ### Script Execution Order
 
 For proper functionality, execute the scripts in this order:
@@ -265,6 +267,7 @@ For proper functionality, execute the scripts in this order:
 2. item_02_generate_citation_APA_FAISS.py
 3. item_03_replace_source_by_citation.py
 4. item_04_CoT_search.py
+5. A file "retrieved_chunks.xlsx" file is generated upon execution from where we manually put the chunks and the answer in the Q&A-human_generated_with_context csv files and evalauated based on the "scripts/FAISS_scripts/item_07_eval_02_human_evaluation.py". We had to do this due to lack of time and this works because the evalaution is the same based on ground truth, generated answers and the retrieved chunks.
 
 ## Data Flow
 
