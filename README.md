@@ -35,35 +35,51 @@
 
 A sophisticated document processing and retrieval system that leverages FAISS (Facebook AI Similarity Search) and OpenAI embeddings to create an interactive question-answering interface for coral research documents.
 
-# Project Structure
+## Project Structure
 ```
 project/
 ├── scripts/
 │   └── FAISS_scripts/
-│       ├── item_01_database_creation_FAISS.py    # Initial document processing
-│       ├── item_02_generate_citations_APA_FAISS.py # Citation generation
-│       ├── item_03_replace_source_by_citation.py   # Citation integration
-│       ├── item_04_retriever_FAISS.py             # Query processing
-│       ├── item_05_streamlit_FAISS.py             # Web interface
-│       ├── item_06_eval_01_save_response_and_context.py # Evaluation data collection
-│       ├── item_07_eval_02_human_evaluation.py     # System evaluation
+│       ├── item_01_database_creation_FAISS.py            # Initial document processing
+│       ├── item_02_generate_citations_APA_FAISS.py       # Citation generation
+│       ├── item_03_replace_source_by_citation.py         # Citation integration
+│       ├── item_04_retriever_FAISS.py                    # Query processing
+│       ├── item_06_eval_01_save_response_and_context.py  # Evaluation data collection
+│       ├── item_07_eval_02_human_evaluation.py           # System evaluation
 │       ├── item_08_eval_03_generate_questions_answers_from_chunk.py  
 │       ├── item_09_eval_04_save_response_and_context_LLM.py
 │       ├── item_10_eval_05_llm_evaluation.py
+│   └── Hybrid_scripts/
+│       ├── item_01_database_creation_FAISS.py        # Initial document processing
+│       ├── item_02_generate_citations_APA_FAISS.py   # Citation generation
+│       ├── item_03_replace_source_by_citation.py     # Citation integration
+│       ├── item_04_CoT_search.py                     # Query processing with CoT
+│      
 ├── data/
-│   └── pdfs/            # Source PDF documents
-├── faiss_index/             # FAISS vector database storage
+│   └── pdfs/           # Source PDF documents
+│
+├── faiss_index/        # faiss vector database storage
+│   ├── index.faiss            
+│   ├── index.pkl  
+│
+├── hybrid_index/            # Hybrid vector database storage
+│   ├── index.faiss            
+│   ├── index.pkl        
+│   ├── networkx_graph.pkl 
+|
 ├── additional_files/
-│   ├── citations.csv        # Generated APA citations
-│   ├── Q&A-Human_generated.csv # Human-created test questions
-│   ├── Q&A-human_generated_with_context.csv # System responses
-│   ├── Q&A_result-human_generated.csv # Detailed evaluation results
-│   ├── overall_result-human_generated.csv # Summary evaluation metrics
-│   ├── Q&A-LLM_generated.csv # LLM-created test questions
-│   ├── Q&A-LLM_generated_with_context.csv # System responses
-│   ├── Q&A_result-LLM_generated.csv # Detailed evaluation results
-│   ├── overall_result-LLM_generated.csv # Summary evaluation metrics
-|__
+│   ├── citations.csv                    # Generated APA citations
+│   ├── Q&A-Human_generated.csv          # Human-created test questions
+│   ├── Q&A-human_generated_with_context.csv       # System responses
+│   ├── Q&A_result-human_generated.csv             # Detailed evaluation results
+│   ├── overall_result-human_generated.csv         # Summary evaluation metrics
+│   ├── Q&A-LLM_generated.csv                      # LLM-created test questions
+│   ├── Q&A-LLM_generated_with_context.csv         # System responses
+│   ├── Q&A_result-LLM_generated.csv               # Detailed evaluation results
+│   ├── overall_result-LLM_generated.csv           # Summary evaluation metrics
+│
+└── README.md
+```
 
 ### Input Files
 Located in `data/pdfs/`:
@@ -188,7 +204,7 @@ Evaluation results are saved in:
 - `overall_result-human_generated.csv`: Summary metrics for system performance
 
 
-# Chain of Thought
+# Instructions for Chain of Thought
 
 This README provides documentation for the hybrid retrieval system scripts and their associated test files. The hybrid system combines vector-based (FAISS) and graph-based (NetworkX) retrieval for more comprehensive coral research information retrieval.
 
@@ -280,52 +296,6 @@ For proper functionality, execute the scripts in this order:
    ```
    User Query → CoT_search.py → Answer with citations
    ```
-## Project Structure
-```
-project/
-├── scripts/
-│   └── FAISS_scripts/
-│       ├── item_01_database_creation_FAISS.py            # Initial document processing
-│       ├── item_02_generate_citations_APA_FAISS.py       # Citation generation
-│       ├── item_03_replace_source_by_citation.py         # Citation integration
-│       ├── item_04_retriever_FAISS.py                    # Query processing
-│       ├── item_05_streamlit_FAISS.py                    # Web interface (not implemented)
-│       ├── item_06_eval_01_save_response_and_context.py  # Evaluation data collection
-│       ├── item_07_eval_02_human_evaluation.py           # System evaluation
-│       ├── item_08_eval_03_generate_questions_answers_from_chunk.py  
-│       ├── item_09_eval_04_save_response_and_context_LLM.py
-│       ├── item_10_eval_05_llm_evaluation.py
-│   └── Hybrid_scripts/
-│       ├── item_01_database_creation_FAISS.py        # Initial document processing
-│       ├── item_02_generate_citations_APA_FAISS.py   # Citation generation
-│       ├── item_03_replace_source_by_citation.py     # Citation integration
-│       ├── item_04_CoT_search.py                     # Query processing with CoT
-│      
-├── data/
-│   └── pdfs/           # Source PDF documents
-│
-├── faiss_index/        # faiss vector database storage
-│   ├── index.faiss            
-│   ├── index.pkl  
-│
-├── hybrid_index/            # Hybrid vector database storage
-│   ├── index.faiss            
-│   ├── index.pkl        
-│   ├── networkx_graph.pkl 
-|
-├── additional_files/
-│   ├── citations.csv                    # Generated APA citations
-│   ├── Q&A-Human_generated.csv          # Human-created test questions
-│   ├── Q&A-human_generated_with_context.csv       # System responses
-│   ├── Q&A_result-human_generated.csv             # Detailed evaluation results
-│   ├── overall_result-human_generated.csv         # Summary evaluation metrics
-│   ├── Q&A-LLM_generated.csv                      # LLM-created test questions
-│   ├── Q&A-LLM_generated_with_context.csv         # System responses
-│   ├── Q&A_result-LLM_generated.csv               # Detailed evaluation results
-│   ├── overall_result-LLM_generated.csv           # Summary evaluation metrics
-│
-└── README.md
-```
 
 ## Troubleshooting
 
