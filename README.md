@@ -1,5 +1,4 @@
 # COMS6720_project
-=======
 ### Prerequisites
 
 1. Python 3.11.5 environment
